@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RENC EMNİYET MÜDÜRLÜĞÜ — Kamp Cinayeti Dosyası</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;700;900&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #e8d5a3;
+    --parchment-dark: #c9a96e;
+    --parchment-light: #f4e8c1;
+    --ink: #2c1810;
+    --ink-faded: #5a3e28;
+    --stamp-red: #8b1a1a;
+    --stamp-red-faded: rgba(139,26,26,0.7);
+    --border-brown: #7a5c2e;
+    --shadow: rgba(44,24,16,0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1a0f05;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.01) 35px, rgba(255,255,255,0.01) 70px);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 15px;
+    font-family: 'IM Fell English', serif;
+  }
+
+  .page {
+    background: var(--parchment);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse at 20% 10%, #f0dca8 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, #c8a05a 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 40%, #dcc07a 0%, transparent 40%),
+      linear-gradient(160deg, #f2e2b2 0%, #d4a96a 40%, #e8d090 70%, #c5985a 100%);
+    max-width: 780px;
+    width: 100%;
+    padding: 50px 55px 60px;
+    position: relative;
+    box-shadow:
+      0 0 0 2px var(--border-brown),
+      0 0 0 6px rgba(122,92,46,0.3),
+      8px 12px 40px rgba(0,0,0,0.7),
+      inset 0 0 80px rgba(139,90,30,0.2);
+    border-radius: 2px;
+  }
+
+  /* Yıpranma efektleri */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 5% 5%, rgba(101,61,10,0.4) 0%, transparent 20%),
+      radial-gradient(circle at 95% 8%, rgba(90,55,10,0.3) 0%, transparent 15%),
+      radial-gradient(circle at 3% 95%, rgba(80,50,8,0.35) 0%, transparent 18%),
+      radial-gradient(circle at 97% 97%, rgba(95,60,10,0.4) 0%, transparent 20%);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .page::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(122,92,46,0.06) 28px,
+      rgba(122,92,46,0.06) 29px
+    );
+    pointer-events: none;
+    border-radius: 2px;
+  }
+
+  /* Üst bölüm */
+  .header {
+    text-align: center;
+    border-bottom: 3px double var(--border-brown);
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    position: relative;
+  }
+
+  .mudurlu {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .baslik {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+    margin-bottom: 4px;
+  }
+
+  .alt-baslik {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+  }
+
+  /* Rozet / mühür */
+  .rozet {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 80px;
+    height: 80px;
+    opacity: 0.75;
+    transform: rotate(15deg);
+  }
+
+  .rozet svg { width: 100%; height: 100%; }
+
+  /* Gizli damga */
+  .damga {
+    position: absolute;
+    top: 40px;
+    left: -15px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--stamp-red);
+    letter-spacing: 3px;
+    border: 3px solid var(--stamp-red-faded);
+    padding: 4px 10px;
+    transform: rotate(-30deg);
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  /* Giriş metni */
+  .giris {
+    background: rgba(44,24,16,0.05);
+    border-left: 4px solid var(--parchment-dark);
+    border-right: 4px solid var(--parchment-dark);
+    padding: 18px 22px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .giris p {
+    font-family: 'Special Elite', cursive;
+    font-size: 14.5px;
+    color: var(--ink);
+    line-height: 1.85;
+    text-align: justify;
+  }
+
+  .giris p + p { margin-top: 12px; }
+
+  .giris::before, .giris::after {
+    content: '✦';
+    position: absolute;
+    font-size: 18px;
+    color: var(--border-brown);
+    opacity: 0.5;
+  }
+  .giris::before { top: -10px; left: 50%; transform: translateX(-50%); }
+  .giris::after { bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+  /* Ayraç */
+  .ayrac {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--ink-faded);
+    margin-bottom: 25px;
+    position: relative;
+  }
+  .ayrac::before, .ayrac::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: var(--border-brown);
+    opacity: 0.5;
+  }
+  .ayrac::before { left: 0; }
+  .ayrac::after { right: 0; }
+
+  /* İpucu kartları */
+  .ipuclari {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ipucu-kart {
+    border: 1.5px solid var(--border-brown);
+    background: rgba(255,255,255,0.15);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .ipucu-kart::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .ipucu-btn {
+    width: 100%;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    text-align: left;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .ipucu-btn:hover {
+    background: rgba(44,24,16,0.07);
+  }
+
+  .ipucu-no {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--stamp-red);
+    min-width: 28px;
+    opacity: 0.8;
+  }
+
+  .ipucu-baslik {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--ink);
+    text-transform: uppercase;
+    flex: 1;
+  }
+
+  .chevron {
+    font-size: 12px;
+    color: var(--ink-faded);
+    transition: transform 0.3s;
+  }
+
+  .ipucu-kart.acik .chevron { transform: rotate(180deg); }
+
+  /* İpucu içeriği */
+  .ipucu-icerik {
+    display: none;
+    padding: 0 20px 18px 62px;
+    animation: kayVer 0.3s ease;
+  }
+
+  .ipucu-kart.acik .ipucu-icerik { display: block; }
+
+  @keyframes kayVer {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .ipucu-metin {
+    font-family: 'Special Elite', cursive;
+    font-size: 13.5px;
+    color: var(--ink-faded);
+    line-height: 1.8;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  /* Şifreyi Gör butonu */
+  .sifre-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1.5px solid var(--stamp-red);
+    color: var(--stamp-red);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+    margin-top: 2px;
+  }
+
+  .sifre-btn:hover {
+    background: var(--stamp-red);
+    color: var(--parchment-light);
+  }
+
+  /* Onay katmanı */
+  .onay-kutusu {
+    display: none;
+    background: rgba(139,26,26,0.06);
+    border: 1px dashed var(--stamp-red);
+    padding: 14px 18px;
+    margin-top: 12px;
+    animation: kayVer 0.25s ease;
+  }
+
+  .onay-kutusu.goster { display: block; }
+
+  .onay-metin {
+    font-family: 'Special Elite', cursive;
+    font-size: 13px;
+    color: var(--stamp-red);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .onay-butonlar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .onay-evet, .onay-hayir {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    cursor: pointer;
+    border: 1.5px solid;
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  .onay-evet { border-color: var(--stamp-red); color: var(--stamp-red); }
+  .onay-evet:hover { background: var(--stamp-red); color: var(--parchment-light); }
+  .onay-hayir { border-color: var(--border-brown); color: var(--ink-faded); }
+  .onay-hayir:hover { background: var(--border-brown); color: var(--parchment-light); }
+
+  /* Cevap kutusu */
+  .cevap-kutusu {
+    display: none;
+    background: rgba(44,24,16,0.08);
+    border-left: 4px solid var(--stamp-red);
+    padding: 14px 18px;
+    margin-top: 12px;
+    animation: kayVer 0.25s ease;
+  }
+
+  .cevap-kutusu.goster { display: block; }
+
+  .cevap-metin {
+    font-family: 'Special Elite', cursive;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .sifre-cevap {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--stamp-red);
+    letter-spacing: 6px;
+    display: block;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* Son ipucu — özel stil */
+  .son-ipucu .ipucu-btn {
+    background: rgba(139,26,26,0.06);
+  }
+
+  .son-ipucu .ipucu-baslik {
+    color: var(--stamp-red);
+  }
+
+  /* Alt imza */
+  .alt-imza {
+    margin-top: 35px;
+    text-align: center;
+    border-top: 1px solid rgba(122,92,46,0.4);
+    padding-top: 16px;
+  }
+
+  .alt-imza p {
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    color: var(--ink-faded);
+    letter-spacing: 1px;
+    opacity: 0.6;
+    font-style: italic;
+  }
+
+  /* Köşe süsü */
+  .kose {
+    position: absolute;
+    font-size: 24px;
+    color: var(--border-brown);
+    opacity: 0.35;
+    line-height: 1;
+  }
+  .kose-sl { top: 12px; left: 12px; }
+  .kose-sr { top: 12px; right: 12px; }
+  .kose-al { bottom: 12px; left: 12px; }
+  .kose-ar { bottom: 12px; right: 12px; }
+
+  /* Motto */
+  .motto {
+    text-align: center;
+    margin-bottom: 22px;
+    padding: 10px 0;
+  }
+
+  .motto-metin {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    opacity: 0.75;
+    position: relative;
+    display: inline-block;
+  }
+
+  .motto-metin::before, .motto-metin::after {
+    content: '—';
+    margin: 0 10px;
+    opacity: 0.5;
+  }
+
+  /* Parçalar butonu */
+  .parcalar-wrapper {
+    margin-top: 28px;
+    text-align: center;
+  }
+
+  .parcalar-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--parchment-light);
+    background: var(--stamp-red);
+    border: 2px solid var(--stamp-red);
+    padding: 14px 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0px rgba(44,24,16,0.35);
+  }
+
+  .parcalar-btn:hover {
+    background: #6e1414;
+    border-color: #6e1414;
+    box-shadow: 1px 1px 0px rgba(44,24,16,0.35);
+    transform: translate(2px, 2px);
+  }
+
+  /* ===== PARÇALAR PANELİ ===== */
+  .parcalar-panel {
+    display: none;
+    margin-top: 0;
+    border: 1.5px solid var(--border-brown);
+    background: rgba(255,255,255,0.12);
+    padding: 22px 22px 18px;
+    animation: kayVer 0.3s ease;
+  }
+  .parcalar-panel.acik { display: block; }
+
+  .parcalar-baslik-row {
+    margin-bottom: 8px;
+  }
+  .parcalar-baslik-metin {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--stamp-red);
+    opacity: 0.85;
+  }
+  .parcalar-aciklama {
+    font-family: 'Special Elite', cursive;
+    font-size: 12.5px;
+    color: var(--ink-faded);
+    font-style: italic;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .p-bolum {
+    font-family: 'Cinzel', serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    margin: 14px 0 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(122,92,46,0.3);
+  }
+  .p-liste { display: flex; flex-direction: column; gap: 4px; }
+  .p-satir {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border: 1px solid rgba(122,92,46,0.25);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .p-satir:hover { background: rgba(44,24,16,0.08); border-color: var(--border-brown); }
+  .p-no {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--stamp-red);
+    min-width: 72px;
+    opacity: 0.8;
+  }
+  .p-ad {
+    font-family: 'Special Elite', cursive;
+    font-size: 13px;
+    color: var(--ink);
+    flex: 1;
+  }
+  .p-ikon { font-size: 11px; opacity: 0.45; }
+
+  .parcalar-alt-not {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: rgba(139,26,26,0.05);
+    border: 1px dashed rgba(139,26,26,0.25);
+    font-family: 'Special Elite', cursive;
+    font-size: 13px;
+    color: var(--ink-faded);
+    font-style: italic;
+    line-height: 1.8;
+    text-align: center;
+  }
+  .parcalar-alt-not a { color: var(--stamp-red); text-decoration: none; font-style: normal; }
+  .parcalar-alt-not a:hover { text-decoration: underline; }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,5,2,0.93);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .lightbox-overlay.acik { display: flex; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+  .lightbox-icerik {
+    position: relative;
+    max-width: 92vw;
+    max-height: 92vh;
+    text-align: center;
+  }
+  .lightbox-icerik img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 2px solid var(--border-brown);
+    box-shadow: 0 0 60px rgba(0,0,0,0.8);
+    display: block;
+  }
+  .lightbox-baslik {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--parchment-dark);
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+  .lightbox-kapat {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 30px;
+    height: 30px;
+    background: var(--stamp-red);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  @media (max-width: 500px) {
+    .page { padding: 35px 22px 40px; }
+    .baslik { font-size: 20px; }
+    .ipucu-icerik { padding-left: 20px; }
+    .p-no { min-width: 55px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Köşe süsleri -->
+  <span class="kose kose-sl">✦</span>
+  <span class="kose kose-sr">✦</span>
+  <span class="kose kose-al">✦</span>
+  <span class="kose kose-ar">✦</span>
+
+  <!-- Damga -->
+  <div class="damga">GİZLİ DOSYA</div>
+
+  <!-- Rozet -->
+  <div class="rozet">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="45" fill="none" stroke="#8b1a1a" stroke-width="2.5" opacity="0.7"/>
+      <circle cx="50" cy="50" r="38" fill="none" stroke="#8b1a1a" stroke-width="1" opacity="0.5"/>
+      <text x="50" y="38" text-anchor="middle" font-family="serif" font-size="7" fill="#8b1a1a" font-weight="bold" opacity="0.8">RENC</text>
+      <text x="50" y="52" text-anchor="middle" font-family="serif" font-size="6" fill="#8b1a1a" opacity="0.7">EMNİYET</text>
+      <text x="50" y="63" text-anchor="middle" font-family="serif" font-size="6" fill="#8b1a1a" opacity="0.7">MÜDÜRLÜĞÜ</text>
+      <path d="M50 72 L53 80 L61 80 L55 85 L57 93 L50 88 L43 93 L45 85 L39 80 L47 80 Z" fill="#8b1a1a" opacity="0.6" transform="scale(0.5) translate(50,48)"/>
+    </svg>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="mudurlu">— Renc Emniyet Müdürlüğü —</div>
+    <div class="baslik">KAMP CİNAYETİ DOSYASI</div>
+    <div class="alt-baslik">Gizli · Yalnızca Yetkili Personel</div>
+  </div>
+
+  <!-- Giriş -->
+  <div class="giris">
+    <p>Buraya gelmen iyi olmuş, dedektif. Bu cinayeti çözebilmen için gereken her şey burada.</p>
+    <p>Ama ilk önce kendin çözmeye çalış. Eğer bir çıkmaza girersen bu bilgileri kullan — zira bu ipuçlarına ulaşmadan da cinayeti kendi başına çözebilirsin.</p>
+    <p>Eğer son çare olarak geldiysen... işte sana verebileceğim ipuçları:</p>
+  </div>
+
+  <div class="ayrac">— İpuçları —</div>
+
+  <!-- İPUÇLARI -->
+  <div class="ipuclari">
+
+    <!-- 1. İpucu -->
+    <div class="ipucu-kart" id="kart1">
+      <button class="ipucu-btn" onclick="toggleKart('kart1')">
+        <span class="ipucu-no">I.</span>
+        <span class="ipucu-baslik">2. Sorgunun Şifresi</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="ipucu-icerik">
+        <p class="ipucu-metin">Sorgu 1'leri dinledikten sonra 2. sorgulara ulaşmak için bir şifre gerekiyor. Bu şifre kademe kademe, diğer deliller incelenerek çözülebilir bir bulmacadır. Eğer şifreyi direkt görmek istersen butona basabilirsin — ama önce kendi başına çözmeyi dene.</p>
+        <button class="sifre-btn" onclick="onayGoster('onay1')">Şifreyi Göster</button>
+        <div class="onay-kutusu" id="onay1">
+          <p class="onay-metin">Emin misin? Diğer delilleri inceleyerek bu şifreye kendi başına ulaşabilirsin...</p>
+          <div class="onay-butonlar">
+            <button class="onay-evet" onclick="cevapGoster('cevap1')">Evet, Göster</button>
+            <button class="onay-hayir" onclick="onayKapat('onay1')">Geri Döneyim</button>
+          </div>
+        </div>
+        <div class="cevap-kutusu" id="cevap1">
+          <p class="cevap-metin">2. Sorgu şifresi:</p>
+          <span class="sifre-cevap">ALGENK</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. İpucu -->
+    <div class="ipucu-kart" id="kart2">
+      <button class="ipucu-btn" onclick="toggleKart('kart2')">
+        <span class="ipucu-no">II.</span>
+        <span class="ipucu-baslik">Serkan'ın Telefonunun Şifresi</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="ipucu-icerik">
+        <p class="ipucu-metin">Serkan'ın telefonunu açmak istiyorsan Serkan'ın odasında bulunan fotoğrafı iyi incele ve karton bulmacayı çözmeye çalış. Ulaştığın kelime, telefon şifresi olacak.</p>
+        <button class="sifre-btn" onclick="onayGoster('onay2')">İpucu Ver</button>
+        <div class="onay-kutusu" id="onay2">
+          <p class="onay-metin">Kartonu hâlâ çözemedin mi? Şifreyi bulmak için daha fazla yardım istediğine emin misin?</p>
+          <div class="onay-butonlar">
+            <button class="onay-evet" onclick="cevapGoster('cevap2')">Evet, Göster</button>
+            <button class="onay-hayir" onclick="onayKapat('onay2')">Geri Döneyim</button>
+          </div>
+        </div>
+        <div class="cevap-kutusu" id="cevap2">
+          <p class="cevap-metin">Serkan'ın şapkasındaki harfleri kartonda eşleştirseydin <strong>"DENGE"</strong> kelimesine ulaşabilirdin.<br><br>Kartonu nasıl çözeceğini anlamadıysan: 2 yuvarlak kartta 1 ve 2 noktalı kısımlar vardı — bu noktaları birbiriyle eşlemen gerekiyordu.</p>
+          <span class="sifre-cevap">DENGE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. İpucu -->
+    <div class="ipucu-kart" id="kart3">
+      <button class="ipucu-btn" onclick="toggleKart('kart3')">
+        <span class="ipucu-no">III.</span>
+        <span class="ipucu-baslik">Parmak İzi Kimin?</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="ipucu-icerik">
+        <p class="ipucu-metin">3. delilde bulunan parmak izine dikkatlice bak. Elimizdeki parmak izi raporuyla karşılaştırırsan, bu izin kime ait olduğunu görebilirsin. Raporu dikkatlice incele — yanıt orada saklı.</p>
+        <button class="sifre-btn" onclick="onayGoster('onay3')">Parmak İzi Sahibini Göster</button>
+        <div class="onay-kutusu" id="onay3">
+          <p class="onay-metin">Raporu gerçekten karşılaştırmadan mı geçmek istiyorsun? Bu bilgi sana çok şey anlatabilir...</p>
+          <div class="onay-butonlar">
+            <button class="onay-evet" onclick="cevapGoster('cevap3')">Evet, Söyle</button>
+            <button class="onay-hayir" onclick="onayKapat('onay3')">Geri Döneyim</button>
+          </div>
+        </div>
+        <div class="cevap-kutusu" id="cevap3">
+          <p class="cevap-metin">Parmak izi sahibi:</p>
+          <span class="sifre-cevap">KUMSAL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. İpucu -->
+    <div class="ipucu-kart" id="kart4">
+      <button class="ipucu-btn" onclick="toggleKart('kart4')">
+        <span class="ipucu-no">IV.</span>
+        <span class="ipucu-baslik">İntihar Notu</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="ipucu-icerik">
+        <p class="ipucu-metin">Kaan ölmeden önce bir intihar notu bıraktı. Notun üzerinde silik bir yazı var — kurşun kalemle hafifçe karalayarak altındaki baskıyı ortaya çıkarman gerekiyor. Yazıyı bu şekilde gün yüzüne çıkarabilirsin.</p>
+        <button class="sifre-btn" onclick="onayGoster('onay4')">Notta Ne Yazıyor?</button>
+        <div class="onay-kutusu" id="onay4">
+          <p class="onay-metin">Notu gerçekten kendin incelemeden mi öğrenmek istiyorsun? Bu yazı davada kritik bir iz...</p>
+          <div class="onay-butonlar">
+            <button class="onay-evet" onclick="cevapGoster('cevap4')">Evet, Söyle</button>
+            <button class="onay-hayir" onclick="onayKapat('onay4')">Geri Döneyim</button>
+          </div>
+        </div>
+        <div class="cevap-kutusu" id="cevap4">
+          <p class="cevap-metin">Notun altında gizlenen yazı şu:</p>
+          <span class="sifre-cevap" style="font-size:14px; letter-spacing:3px;">"Seni asla affetmeyeceğim, Aleyna."</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Son İpucu -->
+    <div class="ipucu-kart son-ipucu" id="kart5">
+      <button class="ipucu-btn" onclick="toggleKart('kart5')">
+        <span class="ipucu-no" style="color:#8b1a1a;">⚠</span>
+        <span class="ipucu-baslik">Son İpucu</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="ipucu-icerik">
+        <p class="ipucu-metin" style="color: var(--stamp-red); font-style: normal;">Katil zeki ve sinsi biridir. Planını özenle kurmuş, izini özenle silmiştir. En masum görünen kişiler bazen en hesaplı olanlardır.</p>
+        <p class="ipucu-metin">Sana en sinsi ve plan yapabilecek kim gibi geliyorsa... ona daha çok odaklan.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Parçalar paneli -->
+  <div class="parcalar-wrapper">
+    <button class="parcalar-btn" onclick="parcalarToggle()">⚙ Oyunun parçalarının eksik geldiğini düşünüyorsan tıkla</button>
+  </div>
+
+  <div class="parcalar-panel" id="parcalar-panel">
+    <div class="parcalar-baslik-row">
+      <span class="parcalar-baslik-metin">OYUN PARÇALARI — EKSİKSİZLİK LİSTESİ</span>
+    </div>
+    <p class="parcalar-aciklama">Aşağıdaki her parçanın kutunda bulunması gerekiyor. Eksik gördüğüne tıkla, görselini gör.</p>
+
+    <div class="p-bolum">Delil Poşetleri</div>
+    <div class="p-liste">
+      <div class="p-satir" onclick="lightboxAc('gorseller/delil1.jpg','Delil Poşeti #1 — QR Kodlu Kaset')"><span class="p-no">DELİL #1</span><span class="p-ad">QR Kodlu Kaset</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/delil2.jpg','Delil Poşeti #2 — QR Kodlu Telefon')"><span class="p-no">DELİL #2</span><span class="p-ad">QR Kodlu Telefon</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/delil3.jpg','Delil Poşeti #3 — Parmak İzi')"><span class="p-no">DELİL #3</span><span class="p-ad">Parmak İzi</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/delil4.jpg','Delil Poşeti #4 — Not')"><span class="p-no">DELİL #4</span><span class="p-ad">Not</span><span class="p-ikon">🔍</span></div>
+    </div>
+
+    <div class="p-bolum">Bulmacalar</div>
+    <div class="p-liste">
+      <div class="p-satir" onclick="lightboxAc('gorseller/puzzle-buyuk.jpg','Yuvarlak Alfabe Puzzle — Büyük Daire')"><span class="p-no">PUZZLE</span><span class="p-ad">Yuvarlak Alfabe Puzzle — Büyük Daire</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/puzzle-kucuk.jpg','Yuvarlak Karton Puzzle — Küçük Daire')"><span class="p-no">PUZZLE</span><span class="p-ad">Yuvarlak Karton Puzzle — Küçük Daire</span><span class="p-ikon">🔍</span></div>
+    </div>
+
+    <div class="p-bolum">Kağıtlar & Belgeler</div>
+    <div class="p-liste">
+      <div class="p-satir" onclick="lightboxAc('gorseller/gazete.jpg','Gazete Kağıdı')"><span class="p-no">BELGE</span><span class="p-ad">Gazete Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/otopsi.jpg','Otopsi Kağıdı')"><span class="p-no">BELGE</span><span class="p-ad">Otopsi Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/ifade1.jpg','İfade Kağıdı #1')"><span class="p-no">İFADE 1/5</span><span class="p-ad">1. Kişi İfade Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/ifade2.jpg','İfade Kağıdı #2')"><span class="p-no">İFADE 2/5</span><span class="p-ad">2. Kişi İfade Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/ifade3.jpg','İfade Kağıdı #3')"><span class="p-no">İFADE 3/5</span><span class="p-ad">3. Kişi İfade Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/ifade4.jpg','İfade Kağıdı #4')"><span class="p-no">İFADE 4/5</span><span class="p-ad">4. Kişi İfade Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/ifade5.jpg','İfade Kağıdı #5')"><span class="p-no">İFADE 5/5</span><span class="p-ad">5. Kişi İfade Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/tablo.jpg','Tablo Kağıdı')"><span class="p-no">BELGE</span><span class="p-ad">Tablo Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/aciklama.jpg','Dedektife Açıklama Kağıdı')"><span class="p-no">BELGE</span><span class="p-ad">Dedektife Açıklama Kağıdı</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/parmak-izi-tablosu.jpg','5 Kişinin Parmak İzi Tablosu')"><span class="p-no">BELGE</span><span class="p-ad">5 Kişinin Parmak İzi Tablosu</span><span class="p-ikon">🔍</span></div>
+      <div class="p-satir" onclick="lightboxAc('gorseller/fotograf.jpg','Fotoğraf')"><span class="p-no">DELİL</span><span class="p-ad">1 Adet Fotoğraf</span><span class="p-ikon">🔍</span></div>
+    </div>
+
+    <div class="parcalar-alt-not">
+      Eğer eksik gelen bir şey varsa üstüne tıklayarak görüntüsünü görebilirsin ve bana Instagram'dan <a href="https://instagram.com/rencplease" target="_blank">@rencplease</a> yazabilirsin.<br>
+      <span style="opacity:0.6; font-size:12px;">(Eksik geldi ise özür dilerim.)</span>
+    </div>
+  </div>
+
+  <!-- Alt imza -->
+  <div class="alt-imza">
+    <p>— Bu dosya yalnızca yetkili dedektif personeline açıktır —</p>
+    <p style="margin-top:5px;">Renc Emniyet Müdürlüğü · Kamp Cinayeti Soruşturma Birimi</p>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="lightboxDis(event)">
+  <div class="lightbox-icerik">
+    <button class="lightbox-kapat" onclick="lightboxKapat()">×</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-baslik" id="lightbox-baslik"></div>
+  </div>
+</div>
+
+<script>
+  function toggleKart(id) {
+    const kart = document.getElementById(id);
+    const wasOpen = kart.classList.contains('acik');
+    document.querySelectorAll('.ipucu-kart').forEach(k => k.classList.remove('acik'));
+    if (!wasOpen) kart.classList.add('acik');
+  }
+
+  function onayGoster(id) { document.getElementById(id).classList.add('goster'); }
+  function onayKapat(id) { document.getElementById(id).classList.remove('goster'); }
+
+  function cevapGoster(cevapId) {
+    const onayId = cevapId.replace('cevap', 'onay');
+    document.getElementById(onayId).classList.remove('goster');
+    document.getElementById(cevapId).classList.add('goster');
+  }
+
+  function parcalarToggle() {
+    const panel = document.getElementById('parcalar-panel');
+    panel.classList.toggle('acik');
+  }
+
+  function lightboxAc(src, baslik) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-baslik').textContent = baslik;
+    document.getElementById('lightbox').classList.add('acik');
+  }
+
+  function lightboxKapat() {
+    document.getElementById('lightbox').classList.remove('acik');
+    document.getElementById('lightbox-img').src = '';
+  }
+
+  function lightboxDis(e) {
+    if (e.target === document.getElementById('lightbox')) lightboxKapat();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') lightboxKapat();
+  });
+</script>
+
+</body>
+</html>
